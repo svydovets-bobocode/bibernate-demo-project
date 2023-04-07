@@ -1,6 +1,7 @@
 package com.bobocode.svydovets._2_find;
 
 import com.bobocode.svydovets.bibernate.config.BibernateConfiguration;
+import com.bobocode.svydovets.bibernate.session.LockModeType;
 import com.bobocode.svydovets.bibernate.session.Session;
 import com.bobocode.svydovets.bibernate.session.SessionFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,10 @@ public class FindAndFindAllDemo {
 
             // Find all entities
             Collection<Customer> customers = session.findAll(Customer.class);
-            customers.forEach(customer -> log.info("Found customer: {}", customer));
+            log.info("Customers found: " + customers.size());
+
+            //print all customers if needed
+//            customers.forEach(customer -> log.info("Found customer: {}", customer));
         }
     }
 

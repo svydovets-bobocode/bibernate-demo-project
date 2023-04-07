@@ -43,6 +43,16 @@ public class BasicEntitySaveDemo {
             order.setId(getRandomLongValue()); //random id
             session.save(order);
         }
+
+        //Insert 50 customers, perform only 1 select id from sequence for this run. Id is taken from cache
+        try(Session session = sessionFactory.openSession()) {
+            for (int i = 0; i < 50; i++) {
+                Customer customer = DataFactory.getDefaultCustomerWithoutId();
+                customer.setName("John number " + i);
+                session.save(customer);
+            }
+        }
+
     }
 
     private static void initSessionFactory() {

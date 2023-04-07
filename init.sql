@@ -7,7 +7,7 @@ CREATE TABLE users
 
 CREATE SEQUENCE custom_seq
     START WITH 1
-    INCREMENT BY 1;
+    INCREMENT BY 50;
 
 CREATE TABLE customers
 (

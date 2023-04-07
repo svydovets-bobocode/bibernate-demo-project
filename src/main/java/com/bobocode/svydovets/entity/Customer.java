@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, sequenceName = "custom_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, sequenceName = "custom_seq", allocationSize = 50)
     private Long id;
     @Column
     private String name;
