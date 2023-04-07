@@ -8,6 +8,8 @@ import com.bobocode.svydovets.utils.DataFactory;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  * This demo shows how to remove an entity using the Bibernate ORM framework.
  * It demonstrates how to save an entity with a manually specified ID,
@@ -20,7 +22,7 @@ public class BasicEntityRemoveDemo {
         initSessionFactory();
 
         // Insert a new Order with a manually specified ID
-        long orderId = ThreadLocalRandom.current().nextLong();
+        long orderId = getRandomLongValue();
         try (Session session = sessionFactory.openSession()) {
             Order order = DataFactory.getDefaultOrderWithoutId();
             order.setId(orderId); //random id

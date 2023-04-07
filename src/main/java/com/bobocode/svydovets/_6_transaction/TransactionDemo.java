@@ -10,6 +10,8 @@ import com.bobocode.svydovets.entity.User;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  * This demo shows usage of transactions in Bibernate. It creates and saves new instances of
  * {@link Customer}, {@link Order}, and {@link User} entities, and performs all database operations within a single
@@ -34,7 +36,7 @@ public class TransactionDemo {
 
             // Create a new Order entity and associate it with the Customer entity
             Order order = DataFactory.getDefaultOrderWithoutId();
-            order.setId(ThreadLocalRandom.current().nextLong());
+            order.setId(getRandomLongValue());
             session.save(order);
 
             // Create a new User entity and save it to the database

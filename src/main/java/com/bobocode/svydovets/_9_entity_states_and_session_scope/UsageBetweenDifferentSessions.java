@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  * This demo shows usage Bibernate sessions and entity states.
  * The Order entity is in MANAGED state within the current session and in TRANSIENT state in the otherSession.
@@ -28,7 +30,7 @@ public class UsageBetweenDifferentSessions {
             session.beginTransaction();
 
             // Create a new Order entity and add save action
-            long id = ThreadLocalRandom.current().nextLong();
+            long id = getRandomLongValue();
             Order order = DataFactory.getDefaultOrderWithoutId();
             order.setId(id);
 

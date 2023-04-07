@@ -6,6 +6,8 @@ import com.bobocode.svydovets.entity.Customer;
 import com.bobocode.svydovets.entity.User;
 
 import java.math.BigDecimal;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 @UtilityClass
 public class DataFactory {
@@ -22,5 +24,8 @@ public class DataFactory {
 
     public static Customer getDefaultCustomerWithoutId() {
         return new Customer(null, "John", "Doe", "123");
+    }
+
+    public static Long getRandomLongValue() {return Math.abs(ThreadLocalRandom.current().nextLong());
     }
 }

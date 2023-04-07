@@ -10,6 +10,8 @@ import com.bobocode.svydovets.utils.DataFactory;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  * This demo shows how to save entities with different
  * {@link com.bobocode.svydovets.bibernate.annotation.GeneratedValue}
@@ -38,7 +40,7 @@ public class BasicEntitySaveDemo {
         // Insert a new Order with a manually specified ID
         try (Session session = sessionFactory.openSession()) {
             Order order = DataFactory.getDefaultOrderWithoutId();
-            order.setId(ThreadLocalRandom.current().nextLong()); //random id
+            order.setId(getRandomLongValue()); //random id
             session.save(order);
         }
     }

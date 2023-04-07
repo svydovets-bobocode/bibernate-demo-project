@@ -26,8 +26,9 @@ public class PessimisticLockingDemo {
         Thread findThread = new Thread(() -> {
             try (Session session = sessionFactory.openSession()) {
                 session.find(Order.class, DataFactory.DEFAULT_ID, LockModeType.FOR_UPDATE);
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
+                Thread.sleep(10000);
+                log.info("_____________Lock is released____________");
+            } catch (Exception e) {
                 log.error("Error occurred while locking the order", e);
                 Thread.currentThread().interrupt();
             }
@@ -35,6 +36,7 @@ public class PessimisticLockingDemo {
 
         Thread updateThread = new Thread(() -> {
             try (Session newSession = sessionFactory.openSession()) {
+                Thread.sleep(2000);
                 Order order = newSession.find(Order.class, DataFactory.DEFAULT_ID);
                 order.setTotalPrice(BigDecimal.ONE);
             } catch (Exception e) {
@@ -44,8 +46,7 @@ public class PessimisticLockingDemo {
 
         findThread.start();
         updateThread.start();
-        findThread.join();
-        updateThread.join();
+
     }
 
     private static void initSessionFactory() {

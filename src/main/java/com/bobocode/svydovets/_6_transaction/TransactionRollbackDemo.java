@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  This demo shows the usage of transactions in Bibernate.
  Creates and saves a new {@link Customer} entity, attempts to find a
@@ -34,7 +36,7 @@ public class TransactionRollbackDemo {
             customerId = customer.getId();
 
             //throws exception Unable to find entity this will cause rollback
-            Customer notExistingCustomer = session.find(Customer.class, ThreadLocalRandom.current().nextLong());
+            Customer notExistingCustomer = session.find(Customer.class, getRandomLongValue());
 
             session.commitTransaction();
         } catch (Exception e) {

@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  This demo shows usage of Bibernate sessions with regard to entity states.
  An Order entity is created, saved to a session, and detached from the session.
@@ -27,7 +29,7 @@ public class EntityStateDemo {
 
             // Create a new Order entity and add save action
             Order order = DataFactory.getDefaultOrderWithoutId();
-            order.setId(ThreadLocalRandom.current().nextLong());
+            order.setId(getRandomLongValue());
 
             log.info("Entity state before save: " + session.getEntityState(order));
             session.save(order);

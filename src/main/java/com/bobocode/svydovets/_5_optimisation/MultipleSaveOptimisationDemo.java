@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  * This demo shows the behavior of Bibernate when saving an entity multiple times within the same session.
  * Bibernate optimizes the persistence of the entity by executing only one INSERT statement, which can improve performance.
@@ -24,7 +26,7 @@ public class MultipleSaveOptimisationDemo {
         initSessionFactory();
 
         // Generate a random order ID
-        long orderId = ThreadLocalRandom.current().nextLong();
+        long orderId = getRandomLongValue();
 
         try (Session session = sessionFactory.openSession()) {
             Order order = DataFactory.getDefaultOrderWithoutId();

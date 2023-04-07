@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.math.BigDecimal;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  * This demo shows how to use the merge and detach methods in Bibernate.
  * It demonstrates how to create an entity, save it to the database, detach it from the persistence context,
@@ -24,7 +26,7 @@ public class DetachDemo {
         initSessionFactory();
 
         // Generate a random order ID
-        long orderId = ThreadLocalRandom.current().nextLong();
+        long orderId = getRandomLongValue();
 
         // Create a new Order instance with the generated ID and initial total price
         Order order;

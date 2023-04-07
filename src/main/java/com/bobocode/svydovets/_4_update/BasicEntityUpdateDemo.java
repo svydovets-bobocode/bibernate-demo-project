@@ -10,6 +10,8 @@ import com.bobocode.svydovets.utils.DataFactory;
 import java.math.BigDecimal;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.bobocode.svydovets.utils.DataFactory.getRandomLongValue;
+
 /**
  * This class provides a basic scenario of how to update an entity using Bibernate dirty checking mechanism.
  * It demonstrates how to save an entity with a manually specified ID,
@@ -23,7 +25,7 @@ public class BasicEntityUpdateDemo {
         initSessionFactory();
 
         // Insert a new Order with a manually specified ID
-        long orderId = ThreadLocalRandom.current().nextLong();
+        long orderId = getRandomLongValue();
         try (Session session = sessionFactory.openSession()) {
             Order order = DataFactory.getDefaultOrderWithoutId();
             order.setId(orderId); // random id
