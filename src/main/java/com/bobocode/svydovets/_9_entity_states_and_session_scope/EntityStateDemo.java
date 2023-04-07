@@ -23,7 +23,7 @@ public class EntityStateDemo {
         Session session = sessionFactory.openSession();
         try {
             // Start a new transaction
-            session.begin();
+            session.beginTransaction();
 
             // Create a new Order entity and add save action
             Order order = DataFactory.getDefaultOrderWithoutId();
@@ -37,9 +37,9 @@ public class EntityStateDemo {
 
             session.find(Order.class, order.getId());// throws error
 
-            session.commit();
+            session.commitTransaction();
         } catch (Exception e) {
-            session.rollback();
+            session.rollbackTransaction();
             e.printStackTrace();
         } finally {
             session.close();

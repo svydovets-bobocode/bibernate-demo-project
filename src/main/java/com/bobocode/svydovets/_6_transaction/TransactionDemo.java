@@ -26,7 +26,7 @@ public class TransactionDemo {
         Session session = sessionFactory.openSession();
         try {
             // Start a new transaction
-            session.begin();
+            session.beginTransaction();
 
             // Create a new Customer entity and save it to the database
             Customer customer = DataFactory.getDefaultCustomerWithoutId();
@@ -42,10 +42,10 @@ public class TransactionDemo {
             session.save(user);
 
             // Commit the transaction
-            session.commit();
+            session.commitTransaction();
         } catch (Exception e) {
             // Rollback the transaction if an exception occurs
-            session.rollback();
+            session.rollbackTransaction();
         } finally {
             session.close();
         }

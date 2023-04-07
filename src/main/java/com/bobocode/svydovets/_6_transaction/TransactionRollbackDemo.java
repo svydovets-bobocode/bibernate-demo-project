@@ -26,7 +26,7 @@ public class TransactionRollbackDemo {
         Session session = sessionFactory.openSession();
         try {
             // Start a new transaction
-            session.begin();
+            session.beginTransaction();
 
             // Create a new Customer entity and save it to the database
             Customer customer = DataFactory.getDefaultCustomerWithoutId();
@@ -36,10 +36,10 @@ public class TransactionRollbackDemo {
             //throws exception Unable to find entity this will cause rollback
             Customer notExistingCustomer = session.find(Customer.class, ThreadLocalRandom.current().nextLong());
 
-            session.commit();
+            session.commitTransaction();
         } catch (Exception e) {
             log.error("Exception occurred", e);
-            session.rollback();
+            session.rollbackTransaction();
         } finally {
             session.close();
         }

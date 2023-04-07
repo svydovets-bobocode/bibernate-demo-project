@@ -25,7 +25,7 @@ public class UsageBetweenDifferentSessions {
 
         try {
             // Start a new transaction
-            session.begin();
+            session.beginTransaction();
 
             // Create a new Order entity and add save action
             long id = ThreadLocalRandom.current().nextLong();
@@ -42,10 +42,10 @@ public class UsageBetweenDifferentSessions {
             // Attempt to retrieve the order in the other session before closing the original session
             Order retrievedOrder = otherSession.find(Order.class, id); // throws error
 
-            session.commit();
+            session.commitTransaction();
         } catch (Exception e) {
             log.error("Exception occurred", e);
-            session.rollback();
+            session.rollbackTransaction();
         } finally {
             session.close();
             otherSession.close();
