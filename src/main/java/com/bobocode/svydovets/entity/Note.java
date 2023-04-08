@@ -1,9 +1,11 @@
 package com.bobocode.svydovets.entity;
 
-import com.bobocode.svydovets.bibernate.annotation.Column;
 import com.bobocode.svydovets.bibernate.annotation.Entity;
 import com.bobocode.svydovets.bibernate.annotation.GeneratedValue;
 import com.bobocode.svydovets.bibernate.annotation.Id;
+import com.bobocode.svydovets.bibernate.annotation.JoinColumn;
+import com.bobocode.svydovets.bibernate.annotation.ManyToOne;
+import com.bobocode.svydovets.bibernate.annotation.OneToMany;
 import com.bobocode.svydovets.bibernate.annotation.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +17,16 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Entity
-@Table("persons")
+@Table("notes")
 public class Note {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "first_name")
+
     private String body;
-    @Column(name = "last_name")
-    private String lastName;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 
 }

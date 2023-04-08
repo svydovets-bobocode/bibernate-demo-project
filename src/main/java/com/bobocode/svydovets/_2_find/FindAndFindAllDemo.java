@@ -4,6 +4,8 @@ import com.bobocode.svydovets.bibernate.config.BibernateConfiguration;
 import com.bobocode.svydovets.bibernate.session.LockModeType;
 import com.bobocode.svydovets.bibernate.session.Session;
 import com.bobocode.svydovets.bibernate.session.SessionFactory;
+import com.bobocode.svydovets.entity.Note;
+import com.bobocode.svydovets.entity.Person;
 import lombok.extern.slf4j.Slf4j;
 import com.bobocode.svydovets.entity.Customer;
 import com.bobocode.svydovets.entity.User;
@@ -24,6 +26,11 @@ public class FindAndFindAllDemo {
             // Find an entity by ID
             User user = session.find(User.class, 1L);
             log.info("Found user: {}", user);
+
+            //Find entity with relations
+            Person person = session.find(Person.class, 1L);
+            log.info(person.toString());
+            log.info(person.getNotes().toString());
 
             // Find all entities
             Collection<Customer> customers = session.findAll(Customer.class);

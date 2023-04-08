@@ -4,6 +4,7 @@ import com.bobocode.svydovets.bibernate.annotation.Column;
 import com.bobocode.svydovets.bibernate.annotation.Entity;
 import com.bobocode.svydovets.bibernate.annotation.GeneratedValue;
 import com.bobocode.svydovets.bibernate.annotation.Id;
+import com.bobocode.svydovets.bibernate.annotation.JoinColumn;
 import com.bobocode.svydovets.bibernate.annotation.OneToMany;
 import com.bobocode.svydovets.bibernate.annotation.Table;
 import lombok.Getter;
@@ -16,21 +17,20 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
+@ToString(exclude = "notes")
 @Table("persons")
 public class Person {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    private String name;
+
     @Column
     private String team;
 
     @OneToMany
     private List<Note> notes = new ArrayList<>();
-
 }
