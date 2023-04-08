@@ -40,6 +40,13 @@ CREATE TABLE notes
     body      TEXT   NOT NULL
 );
 
+CREATE TABLE products
+(
+    id       BIGSERIAL PRIMARY KEY,
+    quantity INT,
+    version  INT
+);
+
 -- Insert some Person entities
 INSERT INTO persons (name, team)
 VALUES ('John Doe', 'Team A');
